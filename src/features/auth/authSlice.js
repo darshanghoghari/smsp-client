@@ -30,7 +30,7 @@ export const login = createAsyncThunk('auth/login', async (userData) => {
         const cookies = new Cookies();
 
         const response = await axios.post(`${baseURL}auth/login`, userData)
-            .then((res) => {
+            .then(async (res) => {
                 const token = res?.data?.data?.token?.token;
                 const timeout = res?.data?.data?.token?.expiresIn;
                 const user = res?.data?.data?.user;
@@ -38,7 +38,7 @@ export const login = createAsyncThunk('auth/login', async (userData) => {
                 const expirationDate = new Date();
                 expirationDate.setTime(expirationDate.getTime() + 2 * 60 * 60 * 1000); // 2 hours from now
 
-                cookies.set('Authorization', token, { expires: expirationDate });
+                await cookies.set('Authorization', token, { expires: expirationDate });
                 localStorage.setItem('userData', JSON.stringify(user));
 
                 return res;
