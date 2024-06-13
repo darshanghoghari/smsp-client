@@ -13,7 +13,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { Menu } from '@mui/material';
 
 const pages = [];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Logout'];
 
 function AdminsHeader({ isSidebarOpen }) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -46,9 +46,9 @@ function AdminsHeader({ isSidebarOpen }) {
         >
             <Container sx={{ width: '100%' }}>
                 <Toolbar disableGutters>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' } }} />
+                    {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' } }} /> */}
                     <Typography
-                        variant="h6"
+                        variant="h3"
                         noWrap
                         component="a"
                         href="#app-bar-with-responsive-menu"
@@ -56,7 +56,7 @@ function AdminsHeader({ isSidebarOpen }) {
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
-                            fontWeight: 700,
+                            fontWeight: 600,
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
@@ -65,7 +65,7 @@ function AdminsHeader({ isSidebarOpen }) {
                         SMSP
                     </Typography>
 
-                    <AdbIcon sx={{ display: { xs: 'flex', md: 'none' } }} />
+                    {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' } }} /> */}
                     <Typography
                         variant="h5"
                         noWrap
@@ -91,7 +91,7 @@ function AdminsHeader({ isSidebarOpen }) {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Remy Sharp" src="https://i.pinimg.com/736x/7b/8c/d8/7b8cd8b068e4b9f80b4bcf0928d7d499.jpg" />
                             </IconButton>
                         </Tooltip>
                         <Menu

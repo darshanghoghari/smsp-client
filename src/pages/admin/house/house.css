@@ -1,0 +1,13 @@
+h1 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.table-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.table-actions button {
+    margin-right: 5px;
+}

@@ -1,5 +1,7 @@
 import AdminDashboard from '../pages/admin/Dashboard/Index';
 import AdminMain from '../pages/admin/admin-main';
+import HouseAction from '../pages/admin/house/HouseAction';
+import UserDetailsList from '../pages/admin/usersList';
 import LoginPage from '../pages/auth/signin/Index';
 import RegistrationPage from '../pages/auth/signup/Index';
 import './App.css';
@@ -20,8 +22,16 @@ function App() {
       element: <AdminMain />,
       children: [
         {
-          path: 'dashboard',
+          path: 'home',
           element: <AdminDashboard />,
+        },
+        {
+          path: 'house',
+          element: <HouseAction />
+        },
+        {
+          path: 'users',
+          element: <UserDetailsList />
         },
         {
           path: '*',

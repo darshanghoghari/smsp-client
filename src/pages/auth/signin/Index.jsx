@@ -29,7 +29,7 @@ const LoginPage = () => {
                const data = res?.payload;
                if (data?.status === 200) {
                    alert("Login Successfully");
-                   navigate('/admin');
+                   navigate('/admin/home');
                }
                else { 
                    alert(data?.message);
