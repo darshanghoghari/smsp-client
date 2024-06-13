@@ -1,0 +1,187 @@
+.profile-container {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    margin-left: 10px;
+    margin-right: 12px;
+}
+
+.profile-header {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.cover-photo {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.profile-info {
+    position: relative;
+    margin-top: -75px;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid white;
+    object-fit: cover;
+}
+
+.profile-details {
+    margin-top: 10px;
+}
+
+.profile-details h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #777;
+}
+
+.profile-details h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #777;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.profile-stats div {
+    text-align: center;
+}
+
+.profile-stats span {
+    display: block;
+    color: #777;
+}
+
+.profile-main {
+    padding: 20px;
+    background: #f9f9f9;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-profile {
+    display: flex;
+    align-items: center;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.edit-profile svg {
+    margin-right: 5px;
+}
+
+.profile-details-full .details {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.profile-details-full .details svg {
+    margin-right: 10px;
+    color: #333;
+}
+
+.profile-bio {
+    margin-top: 20px;
+}
+
+.profile-bio h3 {
+    margin-bottom: 10px;
+}
+
+.profile-following {
+    margin-top: 20px;
+}
+
+.profile-following h3 {
+    margin-bottom: 10px;
+}
+
+.following-list {
+    display: flex;
+    gap: 10px;
+}
+
+.follower-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.show-more {
+    display: block;
+    margin-top: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-labels {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

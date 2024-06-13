@@ -35,20 +35,6 @@ function AdminsHeader({ isSidebarOpen }) {
         setAnchorElUser(null);
     };
 
-    // const handleLogout = () => {
-    //     // Clear cookies (assuming no third-party library, using simple document.cookie manipulation)
-    //     document.cookie.split(";").forEach((c) => {
-    //         document.cookie = c
-    //             .replace(/^ +/, "")
-    //             .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-    //     });
-
-    //     // Clear local storage
-    //     localStorage.clear();
-
-    //     // Navigate to the login page
-    //     navigate('/');
-    // };
     const handleLogout = () => {
         const cookies = new Cookies();
 
@@ -149,6 +135,9 @@ function AdminsHeader({ isSidebarOpen }) {
                                         handleCloseUserMenu();
                                         if (setting === 'Logout') {
                                             handleLogout();
+                                        }
+                                        else if (setting === 'Profile') {
+                                            navigate('/admin/profile')
                                         }
                                     }}
                                 >
