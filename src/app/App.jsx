@@ -1,5 +1,6 @@
 import AdminDashboard from '../pages/admin/Dashboard/Index';
 import AdminMain from '../pages/admin/admin-main';
+import CircularNotice from '../pages/admin/circularNotice/Index';
 import HouseAction from '../pages/admin/house/HouseAction';
 import UserDetailsList from '../pages/admin/usersList';
 import LoginPage from '../pages/auth/signin/Index';
@@ -32,6 +33,10 @@ function App() {
         {
           path: 'users',
           element: <UserDetailsList />
+        },
+        {
+          path: 'circulars',
+          element: <CircularNotice />
         },
         {
           path: '*',

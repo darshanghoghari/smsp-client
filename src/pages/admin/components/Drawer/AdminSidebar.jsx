@@ -11,7 +11,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         { path: "home", name: "Home", icon: <FaTh /> },
         { path: "house", name: "House", icon: <FaHouseChimney /> },
         { path: "users", name: "User-Details", icon: <PeopleAltOutlinedIcon /> },
-        { path: "comment", name: "Comment", icon: <FaCommentAlt /> },
+        { path: "circulars", name: "Circulars", icon: <FaCommentAlt /> },
         { path: "product", name: "Product", icon: <FaShoppingBag /> },
         { path: "productList", name: "Product List", icon: <FaThList /> }
     ];

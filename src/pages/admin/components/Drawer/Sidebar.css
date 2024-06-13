@@ -2,7 +2,6 @@
     display: flex;
     margin: 0 !important;
     padding: 0 !important;
-    text-decoration: none;
 }
 
 main {
@@ -11,7 +10,7 @@ main {
 }
 
 .sidebar {
-    background: rgba(51, 51, 51, 0.7);
+    background: #8C7569;
     color: #fff;
     height: 100vh;
     width: 200px;
@@ -40,17 +39,22 @@ main {
     padding: 10px 15px;
     gap: 15px;
     transition: all 0.5s;
+    text-decoration: none !important;
 }
 
 .link:hover {
-    background: rgb(85, 85, 84);
-    color: #000;
+    background: #fff !important;
+    color: #55311c !important;
     transition: all 0.5s;
+    border: 1px solid #8C7569;
+    text-decoration: none !important;
 }
 
 .active {
-    background: lightskyblue;
-    color: #000;
+    background: #fff !important;
+    color: #55311c !important;
+    border: 1px solid #8C7569;
+    text-decoration: none !important;
 }
 
 .icon,

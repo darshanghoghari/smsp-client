@@ -60,10 +60,10 @@ const HouseAction = () => {
       {/* First Row */}
       <Row className="align-items-center mb-3">
         <Col className="text-start">
-          <h1 className="m-0">House Details</h1>
+          <h4 className="m-0 ">House Details</h4>
         </Col>
         <Col className="text-end">
-          <Button variant="primary" onClick={() => handleModalShow('add')}><AddSharpIcon /> Add House Detail</Button>
+          <Button variant="btn btn-outline-dark" onClick={() => handleModalShow('add')}><AddSharpIcon /> Add House Detail</Button>
         </Col>
       </Row>
 
@@ -75,19 +75,19 @@ const HouseAction = () => {
           ) : error ? (
             <div>Error: {error.message}</div>
           ) : (
-            <Table striped bordered hover responsive>
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>House No</th>
-                  <th>Type</th>
-                  <th>Sell Price</th>
-                  <th>Rate Money</th>
-                  <th>On Sale</th>
-                  <th>Actions</th>
+            <Table bordered hover responsive >
+              <thead >
+                <tr >
+                  <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
+                  <th style={{ backgroundColor: '#8c7569', color: 'white' }}>House No</th>
+                  <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Type</th>
+                  <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Sell Price</th>
+                  <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Rate Money</th>
+                  <th style={{ backgroundColor: '#8c7569', color: 'white' }}>On Sale</th>
+                  <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Actions</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody >
                 {houseData && houseData.map((house, index) => (
                   <tr key={house._id}>
                     <td>{index + 1}</td>
@@ -97,9 +97,9 @@ const HouseAction = () => {
                     <td>{house.houseOnRateMoney ? house.houseOnRateMoney : 0}</td>
                     <td>{house.houseOnSale ? 'Yes' : 'No'}</td>
                     <td>
-                      <Button variant="primary" size="sm" className="me-2" onClick={() => handleModalShow('view', house)}>View</Button>
-                      <Button variant="warning" size="sm" className="me-2" onClick={() => handleModalShow('update', house)}>Update</Button>
-                      <Button variant="danger" size="sm" onClick={() => handleModalShow('delete', house)}>Delete</Button>
+                      <Button variant="btn btn-outline-success" size="sm" className="me-2" onClick={() => handleModalShow('view', house)}>View</Button>
+                      <Button variant="btn btn-outline-dark" size="sm" className="me-2" onClick={() => handleModalShow('update', house)}>Update</Button>
+                      <Button variant="btn btn-outline-danger" size="sm" onClick={() => handleModalShow('delete', house)}>Delete</Button>
                     </td>
                   </tr>
                 ))}

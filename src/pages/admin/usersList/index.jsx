@@ -64,9 +64,9 @@ const UserDetailsList = () => {
                 <Col className="text-start">
                     <h1 className="m-0">User Details</h1>
                 </Col>
-                <Col className="text-end">
+                {/* <Col className="text-end">
                     <Button variant="primary" onClick={() => handleModalShow('add')}><AddSharpIcon /> Add User Detail</Button>
-                </Col>
+                </Col> */}
             </Row>
 
             {/* Second Row - User Details */}
@@ -80,15 +80,15 @@ const UserDetailsList = () => {
                         <Table striped bordered hover responsive>
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Full Name</th>
-                                    <th>Email</th>
-                                    <th>Contact No</th>
-                                    <th>User Type</th>
-                                    <th>Active</th>
-                                    <th>Access</th>
-                                    <th>Profile Pic</th>
-                                    <th>Actions</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Full Name</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Email</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Contact No</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>User Type</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Active</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Access</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Profile Pic</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -107,9 +107,9 @@ const UserDetailsList = () => {
                                             )}
                                         </td>
                                         <td>
-                                            <Button variant="primary" size="sm" className="me-2" onClick={() => handleModalShow('view', user)}>View</Button>
-                                            <Button variant="warning" size="sm" className="me-2" onClick={() => handleModalShow('update', user)}>Update</Button>
-                                            <Button variant="danger" size="sm" onClick={() => handleModalShow('delete', user)}>Delete</Button>
+                                            <Button variant="btn btn-outline-success" size="sm" className="me-2" onClick={() => handleModalShow('view', user)}>View</Button>
+                                            <Button variant="btn btn-outline-dark" size="sm" className="me-2" onClick={() => handleModalShow('update', user)}>Update</Button>
+                                            <Button variant="btn btn-outline-danger" size="sm" onClick={() => handleModalShow('delete', user)}>Delete</Button>
                                         </td>
                                     </tr>
                                 ))}
