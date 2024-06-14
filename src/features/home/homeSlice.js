@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 // Define the initial state
 const initialState = {
@@ -49,12 +49,45 @@ export const addHomeData = createAsyncThunk('house/addDetail', async (data) => {
 });
 
 export const updateHomeData = createAsyncThunk('house/updateDetail', async (data) => {
+    console.log(data, ' <----------------------Update Data----------------------->');
     try {
+        /**
+         createdAt
+: 
+"2024-04-03T16:48:50.481Z"
+houseFloorCount
+: 
+1
+houseOnRantMoney
+: 
+0
+houseOnRentTenantId
+: 
+null
+houseOnSale
+: 
+true
+houseOwnerUserId
+: 
+null
+houseSellPrice
+: 
+0
+houseType
+: 
+"2BHK"
+updatedAt
+: 
+"2024-04-03T16:48 
+         */
         const token = getToken();
-        console.log(data, " <----------------------Update Data----------------------->");
         const dataId = data._id;
         delete data._id;
         delete data.houseNo;
+        delete data.houseOnRateMoney;
+        delete data.adminUserId;
+        delete data.createdAt;
+        delete data.updatedAt;
         const response = await axios.put(`${baseURL}house/update/${dataId}`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -68,14 +101,18 @@ export const updateHomeData = createAsyncThunk('house/updateDetail', async (data
 });
 
 export const deleteHomeData = createAsyncThunk('house/deleteDetail', async (dataId) => {
-    const token = getToken();
-    const response = await axios.delete(`${baseURL}house/delete/${dataId}`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
-    return response.data;
-})
+    try {
+        const token = getToken();
+        const response = await axios.delete(`${baseURL}house/delete/${dataId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+});
 
 const houseSlice = createSlice({
     name: 'house',
@@ -124,13 +161,26 @@ const houseSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
                 state.home = null;
+            })
+            .addCase(deleteHomeData.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(deleteHomeData.fulfilled, (state, action) => {
+                state.loading = false;
+                state.home = action.payload;
+                state.error = null;
+            })
+            .addCase(deleteHomeData.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+                state.home = null;
             });
     }
 });
 
 // Export the reducer
 export default houseSlice.reducer;
-
 
 
 
@@ -170,8 +220,6 @@ export default houseSlice.reducer;
 // });
 
 // export const addHomeData = createAsyncThunk('house/addDetail', async (data) => {
-//     console.log(data, "<-------------------------Data---------------->");
-
 //     try {
 //         const token = getToken();
 //         const response = await axios.post(`${baseURL}house/add`, data, {
@@ -179,7 +227,7 @@ export default houseSlice.reducer;
 //                 Authorization: `Bearer ${token}`
 //             }
 //         });
-//         console.log(response, "<----------------------dsfsdf------------------>")
+
 //         return response.data;
 //     } catch (error) {
 //         throw error.response.data;
@@ -192,17 +240,24 @@ export default houseSlice.reducer;
 //         console.log(data, " <----------------------Update Data----------------------->");
 //         const dataId = data._id;
 //         delete data._id;
-//         const response = await axios.put(`${baseURL}house/update/${dataId}`, data, {
-//             headers: {
-//                 Authorization: `Bearer ${token}`
-//             }
-//         });
+//         delete data.houseNo;
+//         const response = await axios.put(`${baseURL}house/update/${dataId}`, data);
 
 //         return response.data;
 //     } catch (error) {
 //         throw error.response.data;
 //     }
 // });
+
+// export const deleteHomeData = createAsyncThunk('house/deleteDetail', async (dataId) => {
+//     const token = getToken();
+//     const response = await axios.delete(`${baseURL}house/delete/${dataId}`, {
+//         headers: {
+//             Authorization: `Bearer ${token}`
+//         }
+//     });
+//     return response.data;
+// })
 
 // const houseSlice = createSlice({
 //     name: 'house',
@@ -224,20 +279,34 @@ export default houseSlice.reducer;
 //                 state.error = action.error.message;
 //                 state.home = null;
 //             })
-//         // .addCase(addHomeData.pending, (state) => {
-//         //     state.loading = true;
-//         //     state.error = null;
-//         // })
-//         // .addCase(addHomeData.fulfilled, (state, action) => {
-//         //     state.loading = false;
-//         //     state.home = action.payload;
-//         //     state.error = null;
-//         // })
-//         // .addCase(addHomeData.rejected, (state, action) => {
-//         //     state.loading = false;
-//         //     state.error = action.error.message;
-//         //     state.home = null;
-//         // });
+//             .addCase(addHomeData.pending, (state) => {
+//                 state.loading = true;
+//                 state.error = null;
+//             })
+//             .addCase(addHomeData.fulfilled, (state, action) => {
+//                 state.loading = false;
+//                 state.home = action.payload;
+//                 state.error = null;
+//             })
+//             .addCase(addHomeData.rejected, (state, action) => {
+//                 state.loading = false;
+//                 state.error = action.error.message;
+//                 state.home = null;
+//             })
+//             .addCase(updateHomeData.pending, (state) => {
+//                 state.loading = true;
+//                 state.error = null;
+//             })
+//             .addCase(updateHomeData.fulfilled, (state, action) => {
+//                 state.loading = false;
+//                 state.home = action.payload;
+//                 state.error = null;
+//             })
+//             .addCase(updateHomeData.rejected, (state, action) => {
+//                 state.loading = false;
+//                 state.error = action.error.message;
+//                 state.home = null;
+//             });
 //     }
 // });
 

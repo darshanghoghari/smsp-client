@@ -217,7 +217,7 @@ const Wrapper = styled.section`
   }
 
   .input-button {
-    padding: 1.2rem 3.2rem;
+    padding: 0.5rem 2rem;
     outline: none;
     text-transform: uppercase;
     border: 0;

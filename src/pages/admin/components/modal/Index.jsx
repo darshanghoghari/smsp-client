@@ -62,7 +62,7 @@ const ActionModal = ({ show, handleClose, actionType, data, handleSubmit }) => {
                                 type="text"
                                 placeholder="Enter rate money"
                                 name="houseOnRateMoney"
-                                value={formData.houseOnRateMoney || ''}
+                                value={formData.houseOnRantMoney || ''}
                                 onChange={handleChange}
                             />
                         </Form.Group>
@@ -114,7 +114,7 @@ const ActionModal = ({ show, handleClose, actionType, data, handleSubmit }) => {
                         <p><strong>House No:</strong> {data.houseNo}</p>
                         <p><strong>House Type:</strong> {data.houseType}</p>
                         <p><strong>House Sell Price:</strong> {data.houseSellPrice}</p>
-                        <p><strong>House Rant Money:</strong> {data.houseOnRateMoney}</p> {/* Typo in 'Rent Money' */}
+                        <p><strong>House Rant Money:</strong> {data.houseOnRantMoney}</p>
                         <p><strong>House On Sale:</strong> {data.houseOnSale ? 'Yes' : 'No'}</p>
                         <p><strong>House Floor Count:</strong> {data.houseFloorCount}</p>
                         <p><strong>House Owner User ID:</strong> {data.houseOwnerUserId}</p>
@@ -164,7 +164,7 @@ export default ActionModal;
 
 
 
-// // ActionModal.jsx
+
 // import React, { useState, useEffect } from 'react';
 // import { Modal, Button, Form } from 'react-bootstrap';
 
@@ -273,16 +273,6 @@ export default ActionModal;
 //                                 onChange={handleChange}
 //                             />
 //                         </Form.Group>
-//                         <Form.Group controlId="formAdminUserId" className="mt-2">
-//                             <Form.Label>Admin User ID</Form.Label>
-//                             <Form.Control
-//                                 type="text"
-//                                 placeholder="Enter admin user ID"
-//                                 name="adminUserId"
-//                                 value={formData.adminUserId || ''}
-//                                 onChange={handleChange}
-//                             />
-//                         </Form.Group>
 //                     </>
 //                 );
 //             case 'view':
@@ -291,12 +281,11 @@ export default ActionModal;
 //                         <p><strong>House No:</strong> {data.houseNo}</p>
 //                         <p><strong>House Type:</strong> {data.houseType}</p>
 //                         <p><strong>House Sell Price:</strong> {data.houseSellPrice}</p>
-//                         <p><strong>House Rant Money:</strong> {data.houseOnRateMoney}</p>
+//                         <p><strong>House Rant Money:</strong> {data.houseOnRateMoney}</p> {/* Typo in 'Rent Money' */}
 //                         <p><strong>House On Sale:</strong> {data.houseOnSale ? 'Yes' : 'No'}</p>
 //                         <p><strong>House Floor Count:</strong> {data.houseFloorCount}</p>
 //                         <p><strong>House Owner User ID:</strong> {data.houseOwnerUserId}</p>
 //                         <p><strong>House On Rent Tenant ID:</strong> {data.houseOnRentTenantId}</p>
-//                         <p><strong>Admin User ID:</strong> {data.adminUserId}</p>
 //                     </>
 //                 );
 //             case 'delete':
