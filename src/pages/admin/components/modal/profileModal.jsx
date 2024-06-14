@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const ProfileModal = ({ userData, isOpen, onClose, updateUserData }) => {
     const [updatedData, setUpdatedData] = useState(userData);
@@ -37,36 +38,100 @@ const ProfileModal = ({ userData, isOpen, onClose, updateUserData }) => {
     if (!isOpen) return null;
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
-                <button className="close-modal" onClick={onClose}>X</button>
+        <ModalOverlay>
+            <ModalContent>
+                <CloseButton onClick={onClose}>X</CloseButton>
                 <form onSubmit={handleSubmit}>
-                    <label className="modal-labels">
+                    <ModalLabel>
                         Full Name:
-                        <input className="modal-input" type="text" name="fullName" value={updatedData.fullName} onChange={handleChange} />
-                    </label>
-                    <label className="modal-labels">
+                        <ModalInput type="text" name="fullName" value={updatedData.fullName} onChange={handleChange} />
+                    </ModalLabel>
+                    <ModalLabel>
                         Email:
-                        <input className="modal-input" type="email" name="email" value={updatedData.email} onChange={handleChange} />
-                    </label>
-                    <label className="modal-labels">
+                        <ModalInput type="email" name="email" value={updatedData.email} onChange={handleChange} />
+                    </ModalLabel>
+                    <ModalLabel>
                         Contact No:
-                        <input className="modal-input" type="text" name="contactNo" value={updatedData.contactNo} onChange={handleChange} />
-                    </label>
-                    <label className="modal-labels">
+                        <ModalInput type="text" name="contactNo" value={updatedData.contactNo} onChange={handleChange} />
+                    </ModalLabel>
+                    <ModalLabel>
                         User Type:
-                        <input className="modal-input" type="text" name="userType" value={updatedData.userType} onChange={handleChange} />
-                    </label>
-                    <label className="modal-labels">
+                        <ModalInput type="text" name="userType" value={updatedData.userType} onChange={handleChange} />
+                    </ModalLabel>
+                    <ModalLabel>
                         Upload Profile Image:
-                        <input className="modal-input" type="file" name="profileImage" onChange={handleFileChange} />
-                    </label>
-                    <button type="submit">Save Changes</button>
+                        <ModalInput type="file" name="profileImage" onChange={handleFileChange} />
+                    </ModalLabel>
+                    <SubmitButton type="submit">Save Changes</SubmitButton>
                 </form>
-            </div>
-        </div>
+            </ModalContent>
+        </ModalOverlay>
     );
 };
+
+const ModalOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+`;
+
+const CloseButton = styled.button`
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+`;
+
+const ModalLabel = styled.label`
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+`;
+
+const ModalInput = styled.input`
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+`;
+
+const SubmitButton = styled.button`
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #0056b3;
+    }
+`;
 
 export default ProfileModal;
 
@@ -74,11 +139,17 @@ export default ProfileModal;
 
 
 
-// import React, { useState } from 'react';
+
+// import React, { useEffect, useState } from 'react';
 
 // const ProfileModal = ({ userData, isOpen, onClose, updateUserData }) => {
 //     const [updatedData, setUpdatedData] = useState(userData);
 //     const [imageFile, setImageFile] = useState(null);
+
+//     // Update local state when userData prop changes
+//     useEffect(() => {
+//         setUpdatedData(userData);
+//     }, [userData]);
 
 //     const handleChange = (e) => {
 //         const { name, value } = e.target;
@@ -102,7 +173,7 @@ export default ProfileModal;
 //         }
 
 //         updateUserData(formData);
-//         onClose();
+//         onClose(); // Close modal after updating
 //     };
 
 //     if (!isOpen) return null;
@@ -127,10 +198,6 @@ export default ProfileModal;
 //                     <label className="modal-labels">
 //                         User Type:
 //                         <input className="modal-input" type="text" name="userType" value={updatedData.userType} onChange={handleChange} />
-//                     </label>
-//                     <label className="modal-labels">
-//                         Profile Image URL:
-//                         <input className="modal-input" type="text" name="onCloudinaryLink" value={updatedData.onCloudinaryLink} onChange={handleChange} />
 //                     </label>
 //                     <label className="modal-labels">
 //                         Upload Profile Image:

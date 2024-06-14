@@ -1,6 +1,4 @@
-// ProtectedRoute.js
-
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Cookies from 'universal-cookie';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,12 +17,10 @@ const ProtectedRoute = ({ userType, element }) => {
         const savedUserType = userData ? JSON.parse(userData).userType : '';
 
         if (token && savedUserType === 'Admin' && userType === 'Admin') {
-            return; 
+            return;
         } else {
-            // Clear cookies and localStorage
             cookies.remove('Authorization');
             localStorage.removeItem('userData');
-            // Redirect to login page
             navigate('/');
         }
     };

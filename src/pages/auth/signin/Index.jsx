@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../../features/auth/authSlice";
 import LoginImage from '../assets/Login-Image.webp';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const initialValues = {
   email: "",
@@ -39,7 +40,6 @@ const LoginPage = () => {
       .catch((e) => {
         alert(e);
       });
-    console.log(data, "<----------------------user Data ----------------------->")
   };
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit: formikSubmit } =
@@ -86,7 +86,26 @@ const LoginPage = () => {
                     <label htmlFor="password" className="input-label">
                       Password
                     </label>
-                    <input
+                    <div className="password-input-wrapper">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        autoComplete="off"
+                        name="password"
+                        id="password"
+                        placeholder="Password"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      <button
+                        type="button"
+                        className="toggle-password"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </button>
+                    </div>
+                    {/* <input
                       type="password"
                       autoComplete="off"
                       name="password"
@@ -95,7 +114,7 @@ const LoginPage = () => {
                       value={values.password}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                    />
+                    /> */}
                     {errors.password && touched.password ? (
                       <p className="form-error">{errors.password}</p>
                     ) : null}
@@ -107,7 +126,7 @@ const LoginPage = () => {
                   </div>
                 </form>
                 <p className="sign-up">
-                  Don't have an account? <a href="/register">Sign Up now</a>
+                  Don't have an account? <a href="/register">Register now</a>
                 </p>
               </div>
               <div className="modal-right">
@@ -255,6 +274,27 @@ const Wrapper = styled.section`
     border: 0;
     padding: 4px 0 0;
     font-size: 14px;
+  }
+    .password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .password-input-wrapper input {
+    outline: 0;
+    border: 0;
+    padding: 4px 0;
+    font-size: 14px;
+    flex: 1;
+  }
+  .password-input-wrapper .toggle-password {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #8c7569;
   }
 
   .input-block input::-moz-placeholder {
