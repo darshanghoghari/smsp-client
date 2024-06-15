@@ -2,152 +2,138 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-// Define the initial state
+const baseURL = 'http://localhost:3000/';
 const initialState = {
     loading: false,
     error: null,
-    user: null,
-    profile: null, // Add profile to the state
+    bookings: null,
 };
 
-// Define the base URL for the backend API
-const baseURL = 'http://localhost:3000/';
-
-// Function to get the token from cookies
 const getToken = () => {
     return Cookies.get('Authorization');
 };
 
-// Fetch user data
-export const fetchUserData = createAsyncThunk('user/getDetail', async () => {
+export const addClubBooking = createAsyncThunk('clubBooking/add', async (formData) => {
     try {
         const token = getToken();
-        const response = await axios.get(`${baseURL}profile/getDetails`, {
+        const response = await axios.post(`${baseURL}clubBooking/add`, formData, {
             headers: {
+                'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`,
             },
         });
-
-        console.log(response.data.data, '<----------------------user Data ----------------------->');
-        return response.data.data;
-    } catch (error) {
-        throw error.response.data;
-    }
-});
-
-// Fetch single profile data
-export const fetchSingleProfile = createAsyncThunk('user/getSingleProfile', async (id) => {
-    try {
-        const token = getToken();
-        const response = await axios.get(`${baseURL}profile/get/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-
-        return response.data.data;
-    } catch (error) {
-        throw error.response.data;
-    }
-});
-
-// Update user data
-export const updateUserData = createAsyncThunk('user/updateDetail', async ({ id, formData }) => {
-    try {
-        const token = getToken();
-
-        const response = await axios.put(`${baseURL}profile/update/${id}`, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                Authorization: `Bearer ${token}`,
-            },
-        });
-
         return response.data;
     } catch (error) {
         throw error.response.data;
     }
 });
 
-// Delete user data
-export const deleteUserData = createAsyncThunk('user/deleteDetail', async (userId) => {
+export const fetchClubBooking = createAsyncThunk('clubBooking/getDetail', async () => {
     try {
         const token = getToken();
-        const response = await axios.delete(`${baseURL}profile/delete/${userId}`, {
+        const response = await axios.get(`${baseURL}clubBooking/getDetail`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
+        return response.data.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+});
 
+export const updateClubBooking = createAsyncThunk('clubBooking/update', async ({ bookingId, formData }) => {
+    try {
+        const token = getToken();
+        const response = await axios.put(`${baseURL}clubBooking/update/${bookingId}`, formData, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         throw error.response.data;
     }
 });
 
-const userSlice = createSlice({
-    name: 'user',
+export const deleteClubBooking = createAsyncThunk('clubBooking/delete', async (bookingId) => {
+    try {
+        const token = getToken();
+        const response = await axios.delete(`${baseURL}clubBooking/delete/${bookingId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+});
+
+const clubBookingSlice = createSlice({
+    name: 'clubBooking',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchUserData.pending, (state) => {
+            .addCase(addClubBooking.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchUserData.fulfilled, (state, action) => {
+            .addCase(addClubBooking.fulfilled, (state, action) => {
                 state.loading = false;
-                state.user = action.payload;
                 state.error = null;
+                // Assuming action.payload is a single booking object
+                state.bookings = action.payload;
             })
-            .addCase(fetchUserData.rejected, (state, action) => {
+            .addCase(addClubBooking.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
-                state.user = null;
             })
-            .addCase(fetchSingleProfile.pending, (state) => {
+            .addCase(fetchClubBooking.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchSingleProfile.fulfilled, (state, action) => {
+            .addCase(fetchClubBooking.fulfilled, (state, action) => {
                 state.loading = false;
-                state.profile = action.payload; // Set profile data
                 state.error = null;
+                state.bookings = action.payload; // Assuming action.payload is an array of bookings
             })
-            .addCase(fetchSingleProfile.rejected, (state, action) => {
+            .addCase(fetchClubBooking.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
-                state.profile = null;
+                state.bookings = null;
             })
-            .addCase(updateUserData.pending, (state) => {
+            .addCase(updateClubBooking.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(updateUserData.fulfilled, (state, action) => {
+            .addCase(updateClubBooking.fulfilled, (state, action) => {
                 state.loading = false;
-                state.user = action.payload;
                 state.error = null;
+                // Assuming action.payload is a single updated booking object
+                state.bookings = action.payload;
             })
-            .addCase(updateUserData.rejected, (state, action) => {
+            .addCase(updateClubBooking.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
-                state.user = null;
             })
-            .addCase(deleteUserData.pending, (state) => {
+            .addCase(deleteClubBooking.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(deleteUserData.fulfilled, (state) => {
+            .addCase(deleteClubBooking.fulfilled, (state, action) => {
                 state.loading = false;
-                state.user = null;
                 state.error = null;
+                // Assuming action.payload is a message or identifier after deletion
+                state.bookings = null; // Reset bookings after deletion
             })
-            .addCase(deleteUserData.rejected, (state, action) => {
+            .addCase(deleteClubBooking.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             });
     },
 });
 
-// Export the reducer
-export default userSlice.reducer;
+export default clubBookingSlice.reducer;

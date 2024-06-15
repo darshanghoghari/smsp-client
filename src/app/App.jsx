@@ -9,6 +9,9 @@ import UserDetailsList from '../pages/admin/usersList';
 import CircularNotice from '../pages/admin/circularNotice/Index';
 import ProtectedRoute from '../utils/ProtectedRoutes';
 import ProfileDashboard from '../pages/admin/profile/Index';
+import ClubBookingActionPage from '../pages/admin/clubBooking/Index';
+import MeetingAction from '../pages/admin/Meeting/Index';
+import ComplaintActionPage from '../pages/admin/Complaint';
 
 function App() {
   const router = createBrowserRouter([
@@ -43,6 +46,18 @@ function App() {
         {
           path: 'profile',
           element: <ProtectedRoute userType="Admin" element={<ProfileDashboard />} />,
+        },
+        {
+          path: 'club-booking',
+          element: <ProtectedRoute userType="Admin" element={<ClubBookingActionPage />} />,
+        },
+        {
+          path: 'meeting',
+          element: <ProtectedRoute userType="Admin" element={<MeetingAction />} />,
+        },
+        {
+          path: 'complaints',
+          element: <ProtectedRoute userType="Admin" element={<ComplaintActionPage />} />,
         },
         {
           path: '*',

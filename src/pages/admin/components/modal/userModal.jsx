@@ -3,21 +3,33 @@ import { Modal, Button, Image, Form } from 'react-bootstrap';
 
 const UserActionModal = ({ show, handleClose, actionType, data, handleSubmit }) => {
     const [formData, setFormData] = useState({});
+    const [photoProof, setPhotoProof] = useState(null);
 
     useEffect(() => {
         setFormData(data);
     }, [data]);
 
     const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === 'checkbox' ? checked : value,
-        });
+        const { name, value, type, checked, files } = e.target;
+        if (type === 'file') {
+            setPhotoProof(files[0]);
+        } else {
+            setFormData({
+                ...formData,
+                [name]: type === 'checkbox' ? checked : value,
+            });
+        }
     };
 
     const onSubmit = () => {
-        handleSubmit(formData);
+        const formDataWithPhoto = new FormData();
+        Object.keys(formData).forEach((key) => {
+            formDataWithPhoto.append(key, formData[key]);
+        });
+        if (photoProof) {
+            formDataWithPhoto.append('photoProof', photoProof);
+        }
+        handleSubmit(formDataWithPhoto);
     };
 
     const renderModalBody = () => {
@@ -42,8 +54,6 @@ const UserActionModal = ({ show, handleClose, actionType, data, handleSubmit }) 
                         <p><strong>User Type:</strong> {data.userType}</p>
                         <p><strong>Active:</strong> {data.isActive ? 'Yes' : 'No'}</p>
                         <p><strong>Access:</strong> {data.isAccess ? 'Yes' : 'No'}</p>
-                        <p><strong>Created At:</strong> {new Date(data.createdAt).toLocaleString()}</p>
-                        <p><strong>Updated At:</strong> {new Date(data.updatedAt).toLocaleString()}</p>
                     </div>
                 </>
             );
@@ -110,6 +120,14 @@ const UserActionModal = ({ show, handleClose, actionType, data, handleSubmit }) 
                             onChange={handleChange}
                         />
                     </Form.Group>
+                    <Form.Group controlId="formPhotoProof" className="mt-2">
+                        <Form.Label>Photo Proof</Form.Label>
+                        <Form.Control
+                            type="file"
+                            name="photoProof"
+                            onChange={handleChange}
+                        />
+                    </Form.Group>
                 </>
             );
         }
@@ -140,4 +158,3 @@ const UserActionModal = ({ show, handleClose, actionType, data, handleSubmit }) 
 };
 
 export default UserActionModal;
-
