@@ -15,7 +15,7 @@ import Cookies from 'universal-cookie';
 const pages = [];
 const settings = ['Profile', 'Logout'];
 
-function AdminsHeader({ isSidebarOpen }) {
+function OwnerHeader({ isSidebarOpen }) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const navigate = useNavigate();
@@ -154,4 +154,4 @@ function AdminsHeader({ isSidebarOpen }) {
     );
 }
 
-export default AdminsHeader;
+export default OwnerHeader;

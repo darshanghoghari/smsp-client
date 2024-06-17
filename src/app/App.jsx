@@ -12,6 +12,8 @@ import ProfileDashboard from '../pages/admin/profile/Index';
 import ClubBookingActionPage from '../pages/admin/clubBooking/Index';
 import MeetingAction from '../pages/admin/Meeting/Index';
 import ComplaintActionPage from '../pages/admin/Complaint';
+import OwnerMain from '../pages/owner/OwnerMain';
+import OwnerDashboard from '../pages/owner/Dashboard/Index';
 
 function App() {
   const router = createBrowserRouter([
@@ -62,6 +64,20 @@ function App() {
         {
           path: '*',
           element: <ProtectedRoute userType="Admin" element={<AdminDashboard />} />,
+        },
+      ],
+    },
+    {
+      path: '/owner',
+      element: <ProtectedRoute userType="Owner" element={<OwnerMain />} />,
+      children: [
+        {
+          path: 'home',
+          element: <ProtectedRoute userType="Owner" element={<OwnerDashboard />} />,
+        },
+        {
+          path: '*',
+          element: <ProtectedRoute userType="Owner" element={<OwnerDashboard />} />,
         },
       ],
     },
