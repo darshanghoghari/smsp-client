@@ -139,7 +139,7 @@ function OwnerHeader({ isSidebarOpen }) {
                                             handleLogout();
                                         }
                                         else if (setting === 'Profile') {
-                                            navigate('/admin/profile')
+                                            navigate('/owner/profile')
                                         }
                                     }}
                                 >

@@ -35,7 +35,7 @@ const LoginPage = () => {
           alert("Login Successfully");
           const userData = data?.data?.user;
           localStorage.setItem('userData', JSON.stringify(userData));
-          cookies.set('Authorization', data?.data?.token, { path: '/' });
+          cookies.set('Authorization', data?.data?.token?.token, { path: '/' });
           if (userData?.userType === "Admin") {
             navigate('/admin/home');
           }

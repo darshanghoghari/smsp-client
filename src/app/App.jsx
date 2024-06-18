@@ -14,6 +14,7 @@ import MeetingAction from '../pages/admin/Meeting/Index';
 import ComplaintActionPage from '../pages/admin/Complaint';
 import OwnerMain from '../pages/owner/OwnerMain';
 import OwnerDashboard from '../pages/owner/Dashboard/Index';
+import OwnerProfileDashboard from '../pages/owner/profile/Index';
 
 function App() {
   const router = createBrowserRouter([
@@ -74,6 +75,10 @@ function App() {
         {
           path: 'home',
           element: <ProtectedRoute userType="Owner" element={<OwnerDashboard />} />,
+        },
+        {
+          path: 'profile',
+          element: <ProtectedRoute userType="Owner" element={<OwnerProfileDashboard />} />,
         },
         {
           path: '*',
