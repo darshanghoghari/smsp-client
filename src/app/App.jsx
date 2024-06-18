@@ -66,21 +66,7 @@ function App() {
           element: <ProtectedRoute userType="Admin" element={<AdminDashboard />} />,
         },
       ],
-    },
-    {
-      path: '/owner',
-      element: <ProtectedRoute userType="Owner" element={<OwnerMain />} />,
-      children: [
-        {
-          path: 'home',
-          element: <ProtectedRoute userType="Owner" element={<OwnerDashboard />} />,
-        },
-        {
-          path: '*',
-          element: <ProtectedRoute userType="Owner" element={<OwnerDashboard />} />,
-        },
-      ],
-    },
+    }
   ]);
 
   return <RouterProvider router={router} />;
