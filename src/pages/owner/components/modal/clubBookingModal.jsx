@@ -54,7 +54,7 @@ const ClubBookingModal = ({ isOpen, onClose, onSave, bookingData }) => {
                             name="clubBookingDate"
                             value={formData.clubBookingDate}
                             onChange={handleChange}
-                            required
+
                         />
                     </Form.Group>
 
@@ -65,7 +65,7 @@ const ClubBookingModal = ({ isOpen, onClose, onSave, bookingData }) => {
                             name="clubBookingTitle"
                             value={formData.clubBookingTitle}
                             onChange={handleChange}
-                            required
+
                         />
                     </Form.Group>
 

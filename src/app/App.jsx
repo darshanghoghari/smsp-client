@@ -15,6 +15,10 @@ import ComplaintActionPage from '../pages/admin/Complaint';
 import OwnerMain from '../pages/owner/OwnerMain';
 import OwnerDashboard from '../pages/owner/Dashboard/Index';
 import OwnerProfileDashboard from '../pages/owner/profile/Index';
+import OwnerHouseAction from '../pages/owner/house/HouseAction';
+import OwnerCircularNotice from '../pages/owner/circularNotice/Index';
+import OwnerMeetingAction from '../pages/owner/Meeting/Index';
+import OwnerClubBookingActionPage from '../pages/owner/clubBooking/Index';
 
 function App() {
   const router = createBrowserRouter([
@@ -75,6 +79,22 @@ function App() {
         {
           path: 'home',
           element: <ProtectedRoute userType="Owner" element={<OwnerDashboard />} />,
+        },
+        {
+          path: 'house',
+          element: <ProtectedRoute userType="Owner" element={<OwnerHouseAction />} />,
+        },
+        {
+          path: 'circulars',
+          element: <ProtectedRoute userType="Owner" element={<OwnerCircularNotice />} />,
+        },
+        {
+          path: 'club-booking',
+          element: <ProtectedRoute userType="Owner" element={<OwnerClubBookingActionPage />} />,
+        },
+        {
+          path: 'meeting',
+          element: <ProtectedRoute userType="Owner" element={<OwnerMeetingAction />} />,
         },
         {
           path: 'profile',

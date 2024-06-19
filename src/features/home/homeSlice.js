@@ -7,6 +7,7 @@ const initialState = {
     loading: false,
     error: null,
     home: null,
+    singleHome: null
 };
 
 // Define the base URL for the backend API
@@ -33,6 +34,22 @@ export const fetchHomeData = createAsyncThunk('house/getDetail', async () => {
     }
 });
 
+
+export const fetchSingleHomeData = createAsyncThunk('house/getDetailByUsersId', async () => {
+    try {
+        const token = getToken();
+        const response = await axios.get(`${baseURL}house/getDetailByUsersId`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        console.log(response.data.data, '<----------------------House Data single fetch ----------------------->');
+        return response.data.data;
+    } catch (error) {
+        throw error.response.data;
+    }
+});
+
 export const addHomeData = createAsyncThunk('house/addDetail', async (data) => {
     try {
         const token = getToken();
@@ -49,7 +66,7 @@ export const addHomeData = createAsyncThunk('house/addDetail', async (data) => {
 });
 
 export const updateHomeData = createAsyncThunk('house/updateDetail', async (data) => {
-    console.log(data, ' <----------------------Update Data----------------------->');
+
     try {
         const token = getToken();
         const dataId = data._id;
@@ -104,6 +121,20 @@ const houseSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
                 state.home = null;
+            })
+            .addCase(fetchSingleHomeData.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchSingleHomeData.fulfilled, (state, action) => {
+                state.loading = false;
+                state.singleHome = action.payload;
+                state.error = null;
+            })
+            .addCase(fetchSingleHomeData.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+                state.singleHome = null;
             })
             .addCase(addHomeData.pending, (state) => {
                 state.loading = true;

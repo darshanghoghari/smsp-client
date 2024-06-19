@@ -8,7 +8,7 @@ import { AddSharp as AddSharpIcon } from '@mui/icons-material';
 import { addMeeting, deleteMeeting, fetchMeetings, updateMeeting } from '../../../features/meeting/meeting';
 import MeetingModal from '../components/modal/meetingModal';
 
-const MeetingAction = () => {
+const OwnerMeetingAction = () => {
     const dispatch = useDispatch();
     const { meetings, loading, error } = useSelector((state) => state.meeting);
     const [modalShow, setModalShow] = useState(false);
@@ -62,11 +62,6 @@ const MeetingAction = () => {
                 <Col className="text-start">
                     <h4 className="m-0">Meeting Details</h4>
                 </Col>
-                <Col className="text-end">
-                    <Button variant="outline-dark" onClick={() => handleModalShow('add')}>
-                        <AddSharpIcon /> Add Meeting Detail
-                    </Button>
-                </Col>
             </Row>
 
             {/* Second Row */}
@@ -105,21 +100,6 @@ const MeetingAction = () => {
                                             >
                                                 View
                                             </Button>
-                                            <Button
-                                                variant="outline-dark"
-                                                size="sm"
-                                                className="me-2"
-                                                onClick={() => handleModalShow('update', meeting)}
-                                            >
-                                                Update
-                                            </Button>
-                                            <Button
-                                                variant="outline-danger"
-                                                size="sm"
-                                                onClick={() => handleModalShow('delete', meeting)}
-                                            >
-                                                Delete
-                                            </Button>
                                         </td>
                                     </tr>
                                 ))}
@@ -141,4 +121,4 @@ const MeetingAction = () => {
     );
 };
 
-export default MeetingAction;
+export default OwnerMeetingAction;

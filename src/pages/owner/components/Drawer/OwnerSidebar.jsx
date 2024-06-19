@@ -14,7 +14,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     const menuItem = [
         { path: "home", name: "Home", icon: <LuLayoutDashboard /> },
         { path: "house", name: "House", icon: <FaHouseChimney /> },
-        { path: "users", name: "User-Details", icon: <PeopleAltOutlinedIcon /> },
+        // { path: "users", name: "User-Details", icon: <PeopleAltOutlinedIcon /> },
         { path: "circulars", name: "Circulars", icon: <FaRegNoteSticky /> },
         { path: "club-booking", name: "Club-Booking", icon: <LocalBarIcon /> },
         { path: "meeting", name: "Meetings", icon: <FaRegHandshake /> },
