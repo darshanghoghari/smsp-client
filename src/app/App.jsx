@@ -19,6 +19,7 @@ import OwnerHouseAction from '../pages/owner/house/HouseAction';
 import OwnerCircularNotice from '../pages/owner/circularNotice/Index';
 import OwnerMeetingAction from '../pages/owner/Meeting/Index';
 import OwnerClubBookingActionPage from '../pages/owner/clubBooking/Index';
+import OwnerComplaintActionPage from '../pages/owner/Complaint';
 
 function App() {
   const router = createBrowserRouter([
@@ -99,6 +100,10 @@ function App() {
         {
           path: 'profile',
           element: <ProtectedRoute userType="Owner" element={<OwnerProfileDashboard />} />,
+        },
+        {
+          path: 'complaints',
+          element: <ProtectedRoute userType="Owner" element={<OwnerComplaintActionPage />} />,
         },
         {
           path: '*',
