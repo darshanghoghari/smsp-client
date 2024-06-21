@@ -75,15 +75,15 @@ const OwnerCircularNotice = () => {
                     ) : error ? (
                         <div>Error: {error}</div>
                     ) : (
-                        <Table striped bordered hover responsive>
+                        <Table bordered hover responsive>
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Release Date</th>
-                                    <th>Image</th>
-                                    <th>Actions</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Title</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Description</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Release Date</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Image</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>

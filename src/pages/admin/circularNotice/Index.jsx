@@ -5,6 +5,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { ToastContainer, toast } from 'react-toastify';
 import CircularNoticeModal from '../components/modal/circularModal';
 import { fetchCircularNotices, updateCircularNotice, deleteCircularNotice, addCircularNotice } from '../../../features/circularNotice/circularSlice';
+import { FaEdit, FaRegEye, FaTrash } from 'react-icons/fa';
+import AddSharpIcon from '@mui/icons-material/AddSharp';
 
 const CircularNotice = () => {
     const dispatch = useDispatch();
@@ -26,7 +28,7 @@ const CircularNotice = () => {
     const handleModalClose = () => setModalShow(false);
 
     const handleModalSubmit = async (formData) => {
-        console.log(modalAction, "<-----------------Action ------------------>")
+
         try {
             if (modalAction === 'add') {
                 await dispatch(addCircularNotice(formData));
@@ -35,13 +37,6 @@ const CircularNotice = () => {
 
                 const id = formData.get('_id');
                 formData.delete('_id');
-                // const circularData = {
-                //     circularNoticeTitle: formData.get('circularNoticeTitle'),
-                //     circularNoticeDescription: formData.get('circularNoticeDescription'),
-                //     circularNoticeReleaseDate: formData.get('circularNoticeReleaseDate'),
-                //     circularNoticeImage: formData.get('circularNoticeImage'),
-                // }
-                // console.log(circularData, "<-------------------------adjfhajkdfsdhfhsdkjfhsdjkf-------------------------->");
                 await dispatch(updateCircularNotice({ id, circularData: formData }));
                 toast.success('Circular Notice updated successfully.');
             } else if (modalAction === 'delete') {
@@ -66,7 +61,7 @@ const CircularNotice = () => {
                     <h1 className="m-0">Circular Notices</h1>
                 </Col>
                 <Col className="text-end">
-                    <Button variant="primary" onClick={() => handleModalShow('add')}>Add Circular Notice</Button>
+                    <Button variant="btn btn-outline-dark" onClick={() => handleModalShow('add')}><AddSharpIcon /> Add Circular Notice</Button>
                 </Col>
             </Row>
 
@@ -78,15 +73,15 @@ const CircularNotice = () => {
                     ) : error ? (
                         <div>Error: {error}</div>
                     ) : (
-                        <Table striped bordered hover responsive>
+                        <Table bordered responsive>
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Release Date</th>
-                                    <th>Image</th>
-                                    <th>Actions</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Title</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Description</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Release Date</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Image</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -101,10 +96,10 @@ const CircularNotice = () => {
                                                 <Image src={notice.onCloudinaryLink} rounded style={{ width: '50px', height: '50px' }} />
                                             )}
                                         </td>
-                                        <td>
-                                            <Button variant="btn btn-outline-success" size="sm" className="me-2" onClick={() => handleModalShow('view', notice)}>View</Button>
-                                            <Button variant="btn btn-outline-dark" size="sm" className="me-2" onClick={() => handleModalShow('update', notice)}>Update</Button>
-                                            <Button variant="btn btn-outline-danger" size="sm" onClick={() => handleModalShow('delete', notice)}>Delete</Button>
+                                        <td className='d-flex justify-content-around'>
+                                            <Button variant="btn btn-outline-success" size="sm" onClick={() => handleModalShow('view', notice)}><FaRegEye /> View</Button>
+                                            <Button variant="btn btn-outline-dark" size="sm" onClick={() => handleModalShow('update', notice)}><FaEdit /> Edit</Button>
+                                            <Button variant="btn btn-outline-danger" size="sm" onClick={() => handleModalShow('delete', notice)}><FaTrash /> Delete</Button>
                                         </td>
                                     </tr>
                                 )) : "No Circular Notices Found"}

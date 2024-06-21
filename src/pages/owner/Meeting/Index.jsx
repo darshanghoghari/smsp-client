@@ -75,12 +75,12 @@ const OwnerMeetingAction = () => {
                         <Table bordered hover responsive>
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Meeting Date</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Time</th>
-                                    <th>Actions</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Meeting Date</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Title</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Description</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Time</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>

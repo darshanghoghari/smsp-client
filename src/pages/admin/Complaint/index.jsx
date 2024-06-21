@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { addComplaint, deleteComplaint, fetchComplaintsData, updateComplaint } from '../../../features/complaint/complaintSlice';
 import ComplaintModal from '../components/modal/complaintModal';
 import AddSharpIcon from '@mui/icons-material/AddSharp';
+import { FaEdit, FaRegEye, FaTrash } from 'react-icons/fa';
 
 const ComplaintActionPage = () => {
     const dispatch = useDispatch();
@@ -70,7 +71,7 @@ const ComplaintActionPage = () => {
                     ) : error ? (
                         <div>Error: {error}</div>
                     ) : (
-                        <Table bordered hover responsive>
+                        <Table bordered responsive>
                             <thead>
                                 <tr>
                                     <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
@@ -95,24 +96,24 @@ const ComplaintActionPage = () => {
                                                 'No Attachment'
                                             )}
                                         </td>
-                                        <td>
+                                        <td className='d-flex justify-content-around'>
                                             <Button
                                                 variant="btn btn-outline-success" size="sm" className="me-2"
                                                 onClick={() => handleModalShow('view', complaint)}
                                             >
-                                                View
+                                                <FaRegEye /> View
                                             </Button>
                                             <Button
                                                 variant="btn btn-outline-dark" size="sm" className="me-2"
                                                 onClick={() => handleModalShow('update', complaint)}
                                             >
-                                                Update
+                                                <FaEdit /> Edit
                                             </Button>
                                             <Button
                                                 variant="btn btn-outline-danger" size="sm"
                                                 onClick={() => handleModalShow('delete', complaint)}
                                             >
-                                                Delete
+                                                <FaTrash /> Delete
                                             </Button>
                                         </td>
                                     </tr>

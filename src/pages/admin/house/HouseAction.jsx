@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col, Button, Table } from 'react-bootstrap';
@@ -8,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { fetchHomeData, addHomeData, updateHomeData, deleteHomeData } from '../../../features/home/homeSlice';
 import ActionModal from '../components/modal/Index';
 import AddSharpIcon from '@mui/icons-material/AddSharp';
+import { FaEdit, FaRegEye, FaTrash } from 'react-icons/fa';
 
 const HouseAction = () => {
   const dispatch = useDispatch();
@@ -78,7 +78,7 @@ const HouseAction = () => {
           ) : error ? (
             <div>Error: {error}</div>
           ) : (
-            <Table bordered hover responsive >
+            <Table bordered responsive >
               <thead >
                 <tr >
                   <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
@@ -99,10 +99,10 @@ const HouseAction = () => {
                     <td>{house.houseSellPrice ? house.houseSellPrice : 0}</td>
                     <td>{house.houseOnRantMoney ? house.houseOnRantMoney : 0}</td>
                     <td>{house.houseOnSale ? 'Yes' : 'No'}</td>
-                    <td>
-                      <Button variant="btn btn-outline-success" size="sm" className="me-2" onClick={() => handleModalShow('view', house)}>View</Button>
-                      <Button variant="btn btn-outline-dark" size="sm" className="me-2" onClick={() => handleModalShow('update', house)}>Update</Button>
-                      <Button variant="btn btn-outline-danger" size="sm" onClick={() => handleModalShow('delete', house)}>Delete</Button>
+                    <td className='d-flex justify-content-around'>
+                      <Button variant="btn btn-outline-success" size="sm" className="me-2" onClick={() => handleModalShow('view', house)}><FaRegEye /> View</Button>
+                      <Button variant="btn btn-outline-dark" size="sm" className="me-2" onClick={() => handleModalShow('update', house)}><FaEdit /> Edit</Button>
+                      <Button variant="btn btn-outline-danger" size="sm" onClick={() => handleModalShow('delete', house)}><FaTrash /> Delete</Button>
                     </td>
                   </tr>
                 ))}

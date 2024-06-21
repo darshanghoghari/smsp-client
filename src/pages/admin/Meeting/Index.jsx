@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { AddSharp as AddSharpIcon } from '@mui/icons-material';
 import { addMeeting, deleteMeeting, fetchMeetings, updateMeeting } from '../../../features/meeting/meeting';
 import MeetingModal from '../components/modal/meetingModal';
+import { FaEdit, FaRegEye, FaTrash } from 'react-icons/fa';
 
 const MeetingAction = () => {
     const dispatch = useDispatch();
@@ -77,15 +78,15 @@ const MeetingAction = () => {
                     ) : error ? (
                         <div>Error: {error}</div>
                     ) : (
-                        <Table bordered hover responsive>
+                        <Table bordered responsive>
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Meeting Date</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Time</th>
-                                    <th>Actions</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Meeting Date</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Title</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Description</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Time</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,29 +97,27 @@ const MeetingAction = () => {
                                         <td>{meeting.meetingTitle}</td>
                                         <td>{meeting.meetingDescription}</td>
                                         <td>{meeting.meetingTime}</td>
-                                        <td>
+                                        <td className='d-flex justify-content-around'>
                                             <Button
                                                 variant="outline-success"
                                                 size="sm"
-                                                className="me-2"
                                                 onClick={() => handleModalShow('view', meeting)}
                                             >
-                                                View
+                                                <FaRegEye /> View
                                             </Button>
                                             <Button
                                                 variant="outline-dark"
                                                 size="sm"
-                                                className="me-2"
                                                 onClick={() => handleModalShow('update', meeting)}
                                             >
-                                                Update
+                                                <FaEdit /> Edit
                                             </Button>
                                             <Button
                                                 variant="outline-danger"
                                                 size="sm"
                                                 onClick={() => handleModalShow('delete', meeting)}
                                             >
-                                                Delete
+                                                <FaTrash /> Delete
                                             </Button>
                                         </td>
                                     </tr>

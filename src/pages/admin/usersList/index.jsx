@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { ToastContainer, toast } from 'react-toastify';
 import { deleteUserData, fetchUserData, updateUserData } from '../../../features/user/userSlice';
 import UserActionModal from '../components/modal/userModal';
-
+import { FaEdit, FaRegEye, FaTrash } from 'react-icons/fa';
 
 const UserDetailsList = () => {
     const dispatch = useDispatch();
@@ -67,39 +67,39 @@ const UserDetailsList = () => {
                     ) : userError ? (
                         <div>Error: {userError}</div>
                     ) : (
-                        <Table striped bordered hover responsive>
+                        <Table bordered responsive>
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Full Name</th>
-                                    <th>Email</th>
-                                    <th>Contact No</th>
-                                    <th>User Type</th>
-                                    <th>Active</th>
-                                    <th>Access</th>
-                                    <th>Profile Pic</th>
-                                    <th>Actions</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>UserId</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Full Name</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Email</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Contact No</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>User Type</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Active</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Profile Pic</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {userData && userData.length > 0 ? userData.map((user, index) => (
                                     <tr key={user._id}>
                                         <td>{index + 1}</td>
+                                        <td style={{ fontSize: '10px' }}>{user._id}</td>
                                         <td>{user.fullName}</td>
                                         <td>{user.email}</td>
                                         <td>{user.contactNo}</td>
                                         <td>{user.userType}</td>
                                         <td>{user.isActive ? 'Yes' : 'No'}</td>
-                                        <td>{user.isAccess ? 'Yes' : 'No'}</td>
                                         <td>
                                             {user.onCloudinaryLink && (
                                                 <Image src={user.onCloudinaryLink} roundedCircle style={{ width: '50px', height: '50px' }} />
                                             )}
                                         </td>
-                                        <td>
-                                            <Button variant="btn btn-outline-success" size="sm" className="me-2" onClick={() => handleModalShow('view', user)}>View</Button>
-                                            <Button variant="btn btn-outline-dark" size="sm" className="me-2" onClick={() => handleModalShow('update', user)}>Update</Button>
-                                            <Button variant="btn btn-outline-danger" size="sm" onClick={() => handleModalShow('delete', user)}>Delete</Button>
+                                        <td className='d-flex justify-content-around'>
+                                            <Button variant="btn btn-outline-success" size="sm" className="me-2" onClick={() => handleModalShow('view', user)}><FaRegEye /> View</Button>
+                                            <Button variant="btn btn-outline-dark" size="sm" className="me-2" onClick={() => handleModalShow('update', user)}><FaEdit /> Edit</Button>
+                                            <Button variant="btn btn-outline-danger" size="sm" onClick={() => handleModalShow('delete', user)}><FaTrash /> Delete</Button>
                                         </td>
                                     </tr>
                                 )) : "Loading ...."}

@@ -81,15 +81,15 @@ const OwnerClubBookingActionPage = () => {
                     ) : error ? (
                         <p>Error: {error}</p>
                     ) : (
-                        <Table striped bordered hover responsive>
+                        <Table bordered hover responsive>
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Date</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Rent</th>
-                                    <th>Actions</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Date</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Title</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Description</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Rent</th>
+                                    <th style={{ backgroundColor: '#8c7569', color: 'white' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>

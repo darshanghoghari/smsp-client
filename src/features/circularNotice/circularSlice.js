@@ -51,7 +51,7 @@ export const addCircularNotice = createAsyncThunk('circularNotice/addDetail', as
 export const updateCircularNotice = createAsyncThunk('circularNotice/updateDetail', async ({ id, circularData }) => {
     try {
         const token = getToken();
-        console.log(id, "<------------------------------data log-------------------------->", circularData);
+
         const response = await axios.put(`${baseURL}circularNotice/update/${id}`, circularData, {
             headers: {
                 'Content-Type': 'multipart/form-data',

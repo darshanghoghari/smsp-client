@@ -53,7 +53,7 @@ export const updateMeeting = createAsyncThunk('meeting/updateDetail', async (dat
         const token = getToken();
         const meetingId = data._id;
         delete data._id; // Remove _id from the request body
-        console.log(data, "<------------------>");
+        
         delete data.userId;
         delete data.createdAt;
         delete data.updatedAt;

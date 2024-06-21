@@ -43,7 +43,7 @@ export const fetchSingleHomeData = createAsyncThunk('house/getDetailByUsersId', 
                 Authorization: `Bearer ${token}`
             }
         });
-        console.log(response.data.data, '<----------------------House Data single fetch ----------------------->');
+
         return response.data.data;
     } catch (error) {
         throw error.response.data;
@@ -53,6 +53,7 @@ export const fetchSingleHomeData = createAsyncThunk('house/getDetailByUsersId', 
 export const addHomeData = createAsyncThunk('house/addDetail', async (data) => {
     try {
         const token = getToken();
+        delete data._id;
         const response = await axios.post(`${baseURL}house/add`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -69,6 +70,7 @@ export const updateHomeData = createAsyncThunk('house/updateDetail', async (data
 
     try {
         const token = getToken();
+        
         const dataId = data._id;
         delete data._id;
         delete data.houseNo;
@@ -76,6 +78,7 @@ export const updateHomeData = createAsyncThunk('house/updateDetail', async (data
         delete data.adminUserId;
         delete data.createdAt;
         delete data.updatedAt;
+        
         const response = await axios.put(`${baseURL}house/update/${dataId}`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
