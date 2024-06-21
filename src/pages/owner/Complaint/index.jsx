@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { addComplaint, deleteComplaint, fetchComplaintsData, updateComplaint } from '../../../features/complaint/complaintSlice';
 import ComplaintModal from '../components/modal/complaintModal';
 import AddSharpIcon from '@mui/icons-material/AddSharp';
+import { FaEdit, FaRegEye, FaTrash } from 'react-icons/fa';
 
 const OwnerComplaintActionPage = () => {
     const dispatch = useDispatch();
@@ -57,11 +58,11 @@ const OwnerComplaintActionPage = () => {
 
             <Row className="align-items-center mb-3">
                 <Col className="text-start">
-                    <h4 className="m-0">Complaints</h4>
+                    <h4 className="m-0">Complains</h4>
                 </Col>
                 <Col className="text-end">
                     <Button variant="btn btn-outline-dark" onClick={() => handleModalShow('add')}>
-                        <AddSharpIcon /> Add Complaint
+                        <AddSharpIcon /> Add Complain
                     </Button>
                 </Col>
             </Row>
@@ -73,7 +74,7 @@ const OwnerComplaintActionPage = () => {
                     ) : error ? (
                         <div>Error: {error}</div>
                     ) : (
-                        <Table bordered hover responsive>
+                        <Table bordered responsive>
                             <thead>
                                 <tr>
                                     <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
@@ -98,12 +99,12 @@ const OwnerComplaintActionPage = () => {
                                                 'No Attachment'
                                             )}
                                         </td>
-                                        <td>
+                                        <td className='d-flex justify-content-around'>
                                             <Button
                                                 variant="btn btn-outline-success" size="sm" className="me-2"
                                                 onClick={() => handleModalShow('view', complaint)}
                                             >
-                                                View
+                                                <FaRegEye /> View
                                             </Button>
                                             {
                                                 userData._id == complaint.complainedBy &&
@@ -112,13 +113,13 @@ const OwnerComplaintActionPage = () => {
                                                         variant="btn btn-outline-dark" size="sm" className="me-2"
                                                         onClick={() => handleModalShow('update', complaint)}
                                                     >
-                                                        Update
+                                                        <FaEdit /> Edit
                                                     </Button>
                                                     <Button
                                                         variant="btn btn-outline-danger" size="sm"
                                                         onClick={() => handleModalShow('delete', complaint)}
                                                     >
-                                                        Delete
+                                                        <FaTrash /> Delete
                                                     </Button>
                                                 </>
                                             }

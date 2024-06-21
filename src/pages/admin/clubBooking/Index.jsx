@@ -35,6 +35,8 @@ const ClubBookingActionPage = () => {
             dispatch(addClubBooking(formData)).then((newBooking) => {
                 setModalData(newBooking); // Update modalData with newly added booking
                 handleCloseModal();
+                dispatch(fetchClubBooking());
+
             });
         } else if (modalMode === 'edit' && modalData) {
             dispatch(updateClubBooking({ bookingId: modalData._id, formData })).then(() => {

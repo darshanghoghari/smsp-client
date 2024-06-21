@@ -89,9 +89,9 @@ const ComplaintModal = ({ show, handleClose, action, data, handleSubmit }) => {
                 return (
                     <>
                         <div className="d-flex align-items-center mb-3">
-                            {data.proofAttachment && (
+                            {data.onCloudinaryLink && (
                                 <Image
-                                    src={data.proofAttachment}
+                                    src={data.onCloudinaryLink}
                                     rounded
                                     style={{ width: '100px', height: '100px', marginRight: '20px' }}
                                 />

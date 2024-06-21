@@ -12,7 +12,6 @@ const OwnerProfileDashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
-
         const userData = JSON.parse(localStorage.getItem('userData'));
         if (userData && userData._id) {
             const profileId = userData._id;

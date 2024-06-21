@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -11,6 +11,8 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Menu } from '@mui/material';
 import Cookies from 'universal-cookie';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSingleProfile } from '../../../../features/user/userSlice';
 
 const pages = [];
 const settings = ['Profile', 'Logout'];
@@ -19,7 +21,18 @@ function OwnerHeader({ isSidebarOpen }) {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const navigate = useNavigate();
+    const profile = useSelector((state) => state.user.profile);
+    const dispatch = useDispatch();
     const userData = localStorage.getItem('userData');
+
+    useEffect(() => {
+
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        if (userData && userData._id) {
+            const profileId = userData._id;
+            dispatch(fetchSingleProfile(profileId));
+        }
+    }, [dispatch]);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -110,8 +123,8 @@ function OwnerHeader({ isSidebarOpen }) {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src={userData ? JSON.parse(userData).onCloudinaryLink : "https://i.pinimg.com/736x/7b/8c/d8/7b8cd8b068e4b9f80b4bcf0928d7d499.jpg"} />
-                                <Typography sx={{ color: 'white', marginLeft: '15px' }}>{userData && `Hello, ${JSON.parse(userData).fullName}`}</Typography>
+                                <Avatar alt="Remy Sharp" src={profile ? profile.onCloudinaryLink : "https://i.pinimg.com/736x/7b/8c/d8/7b8cd8b068e4b9f80b4bcf0928d7d499.jpg"} />
+                                <Typography sx={{ color: 'white', marginLeft: '15px' }}>{profile && `Hello, ${profile.fullName}`}</Typography>
                             </IconButton>
                         </Tooltip>
                         <Menu

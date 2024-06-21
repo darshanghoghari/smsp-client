@@ -31,7 +31,6 @@ const ComplaintModal = ({ show, handleClose, action, data, handleSubmit }) => {
         }
         submitData.append('complainTitle', formData.complainTitle);
         submitData.append('complainDescription', formData.complainDescription);
-        submitData.append('isResolved', formData.isResolved);
 
         if (proofFile) {
             submitData.append('proofAttachment', proofFile);
@@ -66,15 +65,6 @@ const ComplaintModal = ({ show, handleClose, action, data, handleSubmit }) => {
                                 onChange={handleChange}
                             />
                         </Form.Group>
-                        <Form.Group controlId="formIsResolved" className="mt-2">
-                            <Form.Check
-                                type="checkbox"
-                                label="Resolved"
-                                name="isResolved"
-                                checked={formData.isResolved}
-                                onChange={handleChange}
-                            />
-                        </Form.Group>
                         <Form.Group controlId="formProofAttachment" className="mt-2">
                             <Form.Label>Proof Attachment</Form.Label>
                             <Form.Control
@@ -89,15 +79,15 @@ const ComplaintModal = ({ show, handleClose, action, data, handleSubmit }) => {
                 return (
                     <>
                         <div className="d-flex align-items-center mb-3">
-                            {data.proofAttachment && (
+                            {data.onCloudinaryLink && (
                                 <Image
-                                    src={data.proofAttachment}
+                                    src={data.onCloudinaryLink}
                                     rounded
                                     style={{ width: '100px', height: '100px', marginRight: '20px' }}
                                 />
                             )}
                             <div>
-                                <h5>{data.complainTitle}</h5>
+                                <h5>Title:-{data.complainTitle}</h5>
                                 <p><strong>Description:</strong> {data.complainDescription}</p>
                                 <p><strong>Resolved:</strong> {data.isResolved ? 'Yes' : 'No'}</p>
                             </div>

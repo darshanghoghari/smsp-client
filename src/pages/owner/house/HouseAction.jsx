@@ -5,10 +5,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetchSingleHomeData, addHomeData, updateHomeData, deleteHomeData } from '../../../features/home/homeSlice';
-import AddSharpIcon from '@mui/icons-material/AddSharp';
 import ActionModal from '../components/modal/Index';
-// import ActionModal from '../components/modal/Index';
-// import HouseDetailsModal from '../components/HouseDetailsModal';
+import { FaEdit } from 'react-icons/fa';
 
 const OwnerHouseAction = () => {
   const dispatch = useDispatch();
@@ -39,17 +37,10 @@ const OwnerHouseAction = () => {
 
   const handleModalSubmit = async (data) => {
     try {
-      if (modalAction === 'add') {
-        await dispatch(addHomeData(data)).unwrap();
-        toast.success('House added successfully.');
-      } else if (modalAction === 'update') {
+       if (modalAction === 'update') {
         await dispatch(updateHomeData(data)).unwrap();
         toast.success('House updated successfully.');
-      } else if (modalAction === 'delete') {
-        await dispatch(deleteHomeData(data._id)).unwrap();
-        toast.success('House deleted successfully.');
       }
-
       // After successful add, update, or delete, fetch the updated data
       dispatch(fetchSingleHomeData());
       setModalShow(false);
@@ -98,7 +89,7 @@ const OwnerHouseAction = () => {
               </Row>
               <Row className="mt-3">
                 <Col className='text-end'>
-                  <Button variant="btn btn-outline-primary" className="me-2" onClick={() => handleModalShow('update', singleHome)}>Update</Button>
+                  <Button variant="btn btn-outline-primary" className="me-2" onClick={() => handleModalShow('update', singleHome)}><FaEdit /> Edit</Button>
                 </Col>
               </Row>
             </Card.Body>
@@ -107,7 +98,6 @@ const OwnerHouseAction = () => {
       )}
 
       {/* Action Modal */}
-      {/* Uncomment and use this when you have ActionModal component */}
       <ActionModal
         show={modalShow}
         handleClose={handleModalClose}
@@ -116,13 +106,6 @@ const OwnerHouseAction = () => {
         handleSubmit={handleModalSubmit}
       />
 
-      {/* House Details Modal */}
-      {/* Uncomment and use this when you have HouseDetailsModal component */}
-      {/* <HouseDetailsModal
-        show={!!viewHouse}
-        handleClose={handleModalClose}
-        house={viewHouse}
-      /> */}
     </Container>
   );
 };

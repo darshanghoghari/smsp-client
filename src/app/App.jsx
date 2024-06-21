@@ -7,7 +7,7 @@ import AdminDashboard from '../pages/admin/Dashboard/Index';
 import HouseAction from '../pages/admin/house/HouseAction';
 import UserDetailsList from '../pages/admin/usersList';
 import CircularNotice from '../pages/admin/circularNotice/Index';
-import ProtectedRoute from '../utils/ProtectedRoutes';
+import ProtectedRoute from '../routes/ProtectedRoutes';
 import ProfileDashboard from '../pages/admin/profile/Index';
 import ClubBookingActionPage from '../pages/admin/clubBooking/Index';
 import MeetingAction from '../pages/admin/Meeting/Index';

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col, Button, Table } from 'react-bootstrap';
-import { FaEdit, FaTrash, FaEye } from 'react-icons/fa';
+import { FaEdit, FaRegEye, FaTrash } from 'react-icons/fa';
 import ClubBookingModal from '../components/modal/clubBookingModal';
 import { addClubBooking, deleteClubBooking, fetchClubBooking, updateClubBooking } from '../../../features/clubBooking/clubBooking';
+import AddSharpIcon from '@mui/icons-material/AddSharp';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const OwnerClubBookingActionPage = () => {
     const dispatch = useDispatch();
@@ -11,7 +13,6 @@ const OwnerClubBookingActionPage = () => {
     const [modalMode, setModalMode] = useState('add');
     const [modalData, setModalData] = useState(null);
     const { loading, error, bookings } = useSelector((state) => state.clubBooking);
-    const [filteredBookings, setFilteredBookings] = useState([]);
 
     // Retrieve user data from localStorage
     const userData = JSON.parse(localStorage.getItem('userData'));
@@ -19,13 +20,6 @@ const OwnerClubBookingActionPage = () => {
     useEffect(() => {
         dispatch(fetchClubBooking());
     }, [dispatch]);
-
-    useEffect(() => {
-        if (bookings && Array.isArray(bookings) && userData) {
-            const filterData = bookings.filter(booking => booking.userId === userData._id);
-            setFilteredBookings(filterData);
-        }
-    }, [bookings, userData]);
 
     const handleOpenModal = (mode, data = null) => {
         setIsModalOpen(true);
@@ -42,13 +36,13 @@ const OwnerClubBookingActionPage = () => {
     const handleSaveBooking = (formData) => {
         if (modalMode === 'add') {
             dispatch(addClubBooking(formData)).then(() => {
-                dispatch(fetchClubBooking());
                 handleCloseModal();
+                dispatch(fetchClubBooking());
             });
         } else if (modalMode === 'edit' && modalData) {
             dispatch(updateClubBooking({ bookingId: modalData._id, formData })).then(() => {
-                dispatch(fetchClubBooking());
                 handleCloseModal();
+                dispatch(fetchClubBooking());
             });
         }
     };
@@ -69,7 +63,7 @@ const OwnerClubBookingActionPage = () => {
                     <h1 className="m-0">Club Bookings</h1>
                 </Col>
                 <Col className="text-end">
-                    <Button variant="primary" onClick={() => handleOpenModal('add')}>Add Booking</Button>
+                    <Button variant="btn btn-outline-dark" onClick={() => handleOpenModal('add')}><AddSharpIcon /> Add Booking</Button>
                 </Col>
             </Row>
 
@@ -77,11 +71,11 @@ const OwnerClubBookingActionPage = () => {
             <Row>
                 <Col>
                     {loading ? (
-                        <p>Loading...</p>
+                        <CircularProgress />
                     ) : error ? (
                         <p>Error: {error}</p>
                     ) : (
-                        <Table bordered hover responsive>
+                        <Table bordered responsive>
                             <thead>
                                 <tr>
                                     <th style={{ backgroundColor: '#8c7569', color: 'white' }}>No</th>
@@ -93,23 +87,29 @@ const OwnerClubBookingActionPage = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredBookings && filteredBookings.map((booking, index) => (
+                                {bookings && bookings?.length > 0 && bookings !== null && bookings !== undefined && bookings?.map((booking, index) => (
                                     <tr key={booking._id}>
                                         <td>{index + 1}</td>
                                         <td>{new Date(booking.clubBookingDate).toLocaleDateString()}</td>
                                         <td>{booking.clubBookingTitle}</td>
                                         <td>{booking.clubBookingDescription}</td>
                                         <td>{booking.clubBookingRequestRent}</td>
-                                        <td>
+                                        <td className='d-flex justify-content-around'>
                                             <Button variant="outline-primary" size="sm" onClick={() => handleOpenModal('view', booking)}>
-                                                <FaEye /> View
+                                                <FaRegEye /> View
                                             </Button>
-                                            <Button variant="outline-primary" size="sm" onClick={() => handleOpenModal('edit', booking)}>
-                                                <FaEdit /> Edit
-                                            </Button>
-                                            <Button variant="outline-danger" size="sm" onClick={() => handleDeleteBooking(booking._id)}>
-                                                <FaTrash /> Delete
-                                            </Button>
+                                            {
+                                                userData._id == booking.userId &&
+                                                <>
+                                                    <Button variant="outline-dark" size="sm" onClick={() => handleOpenModal('edit', booking)}>
+                                                        <FaEdit /> Edit
+                                                    </Button>
+                                                    <Button variant="outline-danger" size="sm" onClick={() => handleDeleteBooking(booking._id)}>
+                                                        <FaTrash /> Delete
+                                                    </Button>
+                                                </>
+
+                                            }
                                         </td>
                                     </tr>
                                 ))}
